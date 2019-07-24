@@ -12,12 +12,12 @@ class Metric:
 
     @classmethod
     @abstractmethod
-    def compute(cls, prediction, target):
+    def compute(cls, prediction, target, model):
         pass
 
     @classmethod
     @abstractmethod
-    def evaluate(cls, prediction, target):
+    def evaluate(cls, prediction, target, model):
         pass
 
 
@@ -27,11 +27,11 @@ class Accuracy(Metric):
         return True
 
     @classmethod
-    def compute(cls, prediction, target):
+    def compute(cls, prediction, target, model):
         return Backend.classification_metric(prediction, target)
 
     @classmethod
-    def evaluate(cls, prediction, target):
+    def evaluate(cls, prediction, target, model):
         return accuracy_score(target, prediction)
 
 

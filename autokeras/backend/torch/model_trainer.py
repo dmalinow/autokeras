@@ -185,7 +185,7 @@ class ModelTrainer(ModelTrainerBase):
 
         all_predicted = reduce(lambda x, y: np.concatenate((x, y)), all_predicted)
         all_targets = reduce(lambda x, y: np.concatenate((x, y)), all_targets)
-        return test_loss, self.metric.compute(all_predicted, all_targets)
+        return test_loss, self.metric.compute(all_predicted, all_targets, self.model)
 
     def _save_model(self):
         torch.save(self.model.state_dict(), self.temp_model_path)
